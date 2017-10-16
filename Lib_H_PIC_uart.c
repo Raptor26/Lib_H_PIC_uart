@@ -46,7 +46,7 @@
 void PIC_Init_USART1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufFul(unsigned long fcy,
                                                                    unsigned long baudrate)
 {
-    //  Конфигурируем регистр UxMode
+    //  Конфигурируем регистр U1Mode
     size_t U_MODE = UART_EN
             & UART_IDLE_CON
             & UART_IrDA_DISABLE
@@ -60,7 +60,7 @@ void PIC_Init_USART1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufFul(unsigned long
             & UART_NO_PAR_8BIT
             & UART_1STOPBIT;
 
-    //  Конфигурируем регистр UxSTA
+    //  Конфигурируем регистр U1STA
     size_t U_STA = UART_INT_TX
             & UART_IrDA_POL_INV_ZERO
             & UART_SYNC_BREAK_DISABLED
@@ -75,10 +75,6 @@ void PIC_Init_USART1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufFul(unsigned long
     OpenUART1(U_MODE, U_STA, U_BRG);
     ConfigIntUART1(UART_RX_INT_EN & UART_RX_INT_PR4
                    & UART_TX_INT_EN & UART_TX_INT_PR4);
-
-    //    *u_modeAddr = U_MODE; //        Переносим переменную конфигурации в регистр UxMODE
-    //    *u_staAddr = U_STA; //          Переносим переменную конфируации в регистр UxSTA
-    //    *u_brg = U_BRG; //              Переносим переменную конфируации в регистр UxBRG
 }
 
 /**
@@ -98,7 +94,7 @@ size_t PIC_USART1_Rx_OverflowCheck(void)
         return 0; //            Если переполнения нет;
     }
 }
-#endif
+#endif //   (__PIC24H__)
 //------------------------------------------------------------------------------
 
 
