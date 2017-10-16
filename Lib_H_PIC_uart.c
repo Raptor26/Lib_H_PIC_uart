@@ -43,7 +43,7 @@
  *  @param  fcy:            Частота работы тактового генератора микроконтроллера
  *  @param  baudrate:       Желаемая скорость работы модуля UART
  */
-void PIC_Init_USART1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufFul(unsigned long fcy,
+void PIC_Init_USART1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmp(unsigned long fcy,
                                                                    unsigned long baudrate)
 {
     //  Конфигурируем регистр U1Mode
@@ -61,7 +61,7 @@ void PIC_Init_USART1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufFul(unsigned long
             & UART_1STOPBIT;
 
     //  Конфигурируем регистр U1STA
-    size_t U_STA = UART_INT_TX
+    size_t U_STA = UART_INT_TX_BUF_EMPTY
             & UART_IrDA_POL_INV_ZERO
             & UART_SYNC_BREAK_DISABLED
             & UART_TX_ENABLE
