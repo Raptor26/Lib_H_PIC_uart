@@ -53,6 +53,7 @@
 #if defined (__PIC24H__)
 extern void PIC_Init_USART1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufFul(unsigned long fcy,
         unsigned long baudrate);
+extern size_t PIC_USART1_Rx_OverflowCheck(void);
 #endif
 //------------------------------------------------------------------------------
 
