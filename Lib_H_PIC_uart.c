@@ -51,6 +51,7 @@ void PIC_Init_USART1_1StopBit_8BitData_RxIntEnChar_TxIntEn(unsigned long fcy,
             & UART_BRGH_SIXTEEN
             & UART_NO_PAR_8BIT
             & UART_1STOPBIT;
+
     unsigned int UxSTA = UART_INT_TX
             & UART_IrDA_POL_INV_ZERO
             & UART_SYNC_BREAK_DISABLED
@@ -58,7 +59,9 @@ void PIC_Init_USART1_1StopBit_8BitData_RxIntEnChar_TxIntEn(unsigned long fcy,
             & UART_INT_RX_BUF_FUL
             & UART_ADR_DETECT_DIS
             & UART_RX_OVERRUN_CLEAR;
+
     OpenUART1(U_MODE, UxSTA, ((fcy / baudrate) / 16) - 1);
+
     ConfigIntUART1(UART_RX_INT_EN & UART_RX_INT_PR4
                    & UART_TX_INT_EN & UART_TX_INT_PR4);
 }
@@ -78,6 +81,7 @@ void PIC_Init_USART4_1StopBit_8BitData_RxIntEnChar_TxIntEn(long fcy,
             & UART_BRGH_SIXTEEN
             & UART_NO_PAR_8BIT
             & UART_1STOPBIT;
+
     unsigned int UxSTA = UART_INT_TX
             & UART_IrDA_POL_INV_ZERO
             & UART_SYNC_BREAK_DISABLED
@@ -85,12 +89,42 @@ void PIC_Init_USART4_1StopBit_8BitData_RxIntEnChar_TxIntEn(long fcy,
             & UART_INT_RX_BUF_FUL
             & UART_ADR_DETECT_DIS
             & UART_RX_OVERRUN_CLEAR;
+
     OpenUART4(U_MODE, UxSTA, ((fcy / baudrate) / 16) - 1);
+
     ConfigIntUART4(UART_RX_INT_EN & UART_RX_INT_PR4
                    & UART_TX_INT_EN & UART_TX_INT_PR4);
 }
-#endif //   defined(__dsPIC33F__) || defined(__PIC24H__) || defined(__dsPIC33E__) || defined(__PIC24E__) || \
-            defined(__dsPIC30F1010__) || defined(__dsPIC30F2020__) || defined(__dsPIC30F2023__)
+
+void PIC_USART_1_TransmitPackageWithOutInterrupt(void *pDataArr,
+                                                 size_t cnt)
+{
+    size_t i;
+    for (i = 0; i < cnt; i++)
+    {
+        //  Ждем пока бит не будет сброшен в "0";
+        while (U1STAbits.UTXBF != 0);
+
+        //  Копируем в буфер UART_transmit байт данных;
+        U1TXREG = *(volatile unsigned int*) pDataArr;
+    }
+}
+
+void PIC_USART_4_TransmitPackageWithOutInterrupt(void *pDataArr,
+                                                 size_t cnt)
+{
+    size_t i;
+    for (i = 0; i < cnt; i++)
+    {
+        //  Ждем пока бит не будет сброшен в "0";
+        while (U4STAbits.UTXBF != 0);
+
+        //  Копируем в буфер UART_transmit байт данных;
+        U4TXREG = *(volatile unsigned int*) pDataArr;
+    }
+}
+#endif //   defined(__dsPIC33F__) || defined(__PIC24H__) || defined(__dsPIC33E__) || defined(__PIC24E__) || 
+//   defined(__dsPIC30F1010__) || defined(__dsPIC30F2020__) || defined(__dsPIC30F2023__)
 //------------------------------------------------------------------------------
 
 
