@@ -36,7 +36,7 @@
 #if defined(__dsPIC33F__) || defined(__PIC24H__) || defined(__dsPIC33E__) || defined(__PIC24E__) || \
     defined(__dsPIC30F1010__) || defined(__dsPIC30F2020__) || defined(__dsPIC30F2023__)
 
-void PIC_Init_USART1_1StopBit_8BitData_RxIntEnChar_TxIntEn(unsigned long fcy,
+void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnChar_TxIntEn(unsigned long fcy,
                                                            unsigned long baudrate)
 {
     unsigned int U_MODE = UART_EN
@@ -66,7 +66,7 @@ void PIC_Init_USART1_1StopBit_8BitData_RxIntEnChar_TxIntEn(unsigned long fcy,
                    & UART_TX_INT_EN & UART_TX_INT_PR4);
 }
 
-void PIC_Init_USART4_1StopBit_8BitData_RxIntEnChar_TxIntEn(long fcy,
+void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnChar_TxIntEn(long fcy,
                                                            unsigned long baudrate)
 {
     unsigned int U_MODE = UART_EN
