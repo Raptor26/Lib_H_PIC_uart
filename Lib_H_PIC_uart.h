@@ -49,7 +49,6 @@
 // Секция прототипов глобальных функций
 
 //------------------------------------------------------------------------------
-//  Прототипы функция для микроконтроллера серии "PIC24H"
 #if defined(__dsPIC33F__) || defined(__PIC24H__) || defined(__dsPIC33E__) || defined(__PIC24E__) || \
     defined(__dsPIC30F1010__) || defined(__dsPIC30F2020__) || defined(__dsPIC30F2023__)
 
@@ -63,7 +62,7 @@ extern void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnChar_TxIntEn(unsigned long
 extern void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnChar_TxIntEn(long fcy,
         unsigned long baudrate);
 #endif //   defined(__dsPIC33F__) || defined(__PIC24H__) || defined(__dsPIC33E__) || defined(__PIC24E__) || 
-//   defined(__dsPIC30F1010__) || defined(__dsPIC30F2020__) || defined(__dsPIC30F2023__)
+//          defined(__dsPIC30F1010__) || defined(__dsPIC30F2020__) || defined(__dsPIC30F2023__)
 //------------------------------------------------------------------------------
 
 

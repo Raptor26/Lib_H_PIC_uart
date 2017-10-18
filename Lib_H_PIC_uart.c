@@ -37,7 +37,7 @@
     defined(__dsPIC30F1010__) || defined(__dsPIC30F2020__) || defined(__dsPIC30F2023__)
 
 void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnChar_TxIntEn(unsigned long fcy,
-                                                           unsigned long baudrate)
+                                                            unsigned long baudrate)
 {
     unsigned int U_MODE = UART_EN
             & UART_IDLE_CON
@@ -67,7 +67,7 @@ void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnChar_TxIntEn(unsigned long fcy,
 }
 
 void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnChar_TxIntEn(long fcy,
-                                                           unsigned long baudrate)
+                                                            unsigned long baudrate)
 {
     unsigned int U_MODE = UART_EN
             & UART_IDLE_CON
