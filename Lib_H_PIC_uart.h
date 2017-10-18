@@ -53,6 +53,12 @@
 #if defined(__dsPIC33F__) || defined(__PIC24H__) || defined(__dsPIC33E__) || defined(__PIC24E__) || \
     defined(__dsPIC30F1010__) || defined(__dsPIC30F2020__) || defined(__dsPIC30F2023__)
 
+extern void PIC_USART_1_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
+        size_t cnt);
+
+extern void PIC_USART_4_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
+        size_t cnt);
+
 extern void PIC_Init_USART1_1StopBit_8BitData_RxIntEnChar_TxIntEn(unsigned long fcy,
         unsigned long baudrate);
 extern void PIC_Init_USART4_1StopBit_8BitData_RxIntEnChar_TxIntEn(long fcy,

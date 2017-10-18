@@ -96,7 +96,7 @@ void PIC_Init_USART4_1StopBit_8BitData_RxIntEnChar_TxIntEn(long fcy,
                    & UART_TX_INT_EN & UART_TX_INT_PR4);
 }
 
-void PIC_USART_1_TransmitPackageWithOutInterrupt(void *pDataArr,
+void PIC_USART_1_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
                                                  size_t cnt)
 {
     size_t i;
@@ -106,11 +106,11 @@ void PIC_USART_1_TransmitPackageWithOutInterrupt(void *pDataArr,
         while (U1STAbits.UTXBF != 0);
 
         //  Копируем в буфер UART_transmit байт данных;
-        U1TXREG = *(volatile unsigned int*) pDataArr;
+        U1TXREG = *pDataArr;
     }
 }
 
-void PIC_USART_4_TransmitPackageWithOutInterrupt(void *pDataArr,
+void PIC_USART_4_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
                                                  size_t cnt)
 {
     size_t i;
@@ -120,7 +120,7 @@ void PIC_USART_4_TransmitPackageWithOutInterrupt(void *pDataArr,
         while (U4STAbits.UTXBF != 0);
 
         //  Копируем в буфер UART_transmit байт данных;
-        U4TXREG = *(volatile unsigned int*) pDataArr;
+        U4TXREG = *pDataArr++;
     }
 }
 #endif //   defined(__dsPIC33F__) || defined(__PIC24H__) || defined(__dsPIC33E__) || defined(__PIC24E__) || 
