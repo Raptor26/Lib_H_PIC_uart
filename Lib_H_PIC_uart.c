@@ -46,6 +46,7 @@
 void PIC_Init_USART1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmp(unsigned long fcy,
                                                                    unsigned long baudrate)
 {
+    CloseUART1();
     //  Конфигурируем регистр U1Mode
     size_t U_MODE = UART_EN
             & UART_IDLE_CON
