@@ -82,7 +82,7 @@ void PIC_USART_1_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
         while (U1STAbits.UTXBF != 0);
 
         //  Копируем в буфер UART_transmit байт данных;
-        U1TXREG = *pDataArr;
+        U1TXREG = *pDataArr++;
     }
 }
 
