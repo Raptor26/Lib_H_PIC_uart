@@ -103,6 +103,57 @@ size_t PIC_USART_1_Rx_OverflowCheck(void)
         return 0; //            Если переполнения нет;
     }
 }
+
+//  Функции, относящиеся к модулю USART 2
+void PIC_Init_USART_2_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(unsigned long fcy,
+                                                                     unsigned long baudrate)
+{
+     CloseUART2();
+
+    unsigned int U_MODE = UART_EN
+            & UART_IDLE_CON
+            & UART_IrDA_DISABLE
+            & UART_MODE_FLOW
+            & UART_UEN_00
+            & UART_DIS_WAKE
+            & UART_DIS_LOOPBACK
+            & UART_DIS_ABAUD
+            & UART_UXRX_IDLE_ONE
+            & UART_BRGH_SIXTEEN
+            & UART_NO_PAR_8BIT
+            & UART_1STOPBIT;
+
+    unsigned int U_STA = UART_INT_TX
+            & UART_IrDA_POL_INV_ZERO
+            & UART_SYNC_BREAK_DISABLED
+            & UART_TX_ENABLE
+            & UART_INT_RX_CHAR
+            & UART_ADR_DETECT_DIS
+            & UART_RX_OVERRUN_CLEAR;
+
+    //  Делаем расчет скорости работы модуля UART
+    unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
+
+    OpenUART2(U_MODE, U_STA, U_BRG);
+
+    ConfigIntUART2(UART_RX_INT_EN & UART_RX_INT_PR4
+                   & UART_TX_INT_EN & UART_TX_INT_PR4);
+}
+
+void PIC_USART_2_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
+                                                 size_t cnt)
+{
+    size_t i;
+    for (i = 0; i < cnt; i++)
+    {
+        //  Ждем пока бит не будет сброшен в "0";
+        while (U2STAbits.UTXBF != 0);
+
+        //  Копируем в буфер UART_transmit байт данных;
+        U2TXREG = *pDataArr++;
+    }
+}
+
 #endif //   (__PIC24H__) || defined(__dsPIC33E__) || defined(__PIC24E__)
 //==============================================================================
 
