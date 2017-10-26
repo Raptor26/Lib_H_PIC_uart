@@ -111,7 +111,7 @@ size_t PIC_USART_1_Rx_OverflowCheck(void)
 //  Функции, относящиеся к модулю USART 4
 #if defined(__dsPIC33E__) || defined(__PIC24E__)
 
-void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsigned long fcy,
+void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsigned long fcy,
                                                                      unsigned long baudrate)
 {
     CloseUART4();
