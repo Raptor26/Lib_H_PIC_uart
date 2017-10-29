@@ -72,6 +72,41 @@ void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsigned lo
                    & UART_TX_INT_EN & UART_TX_INT_PR4);
 }
 
+void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt_HightSpeed(unsigned long fcy,
+                                                                              unsigned long baudrate)
+{
+    CloseUART1();
+
+    unsigned int U_MODE = UART_EN
+            & UART_IDLE_CON
+            & UART_IrDA_DISABLE
+            & UART_MODE_FLOW
+            & UART_UEN_00
+            & UART_DIS_WAKE
+            & UART_DIS_LOOPBACK
+            & UART_DIS_ABAUD
+            & UART_UXRX_IDLE_ONE
+            & UART_BRGH_FOUR
+            & UART_NO_PAR_8BIT
+            & UART_1STOPBIT;
+
+    unsigned int U_STA = UART_INT_TX
+            & UART_IrDA_POL_INV_ZERO
+            & UART_SYNC_BREAK_DISABLED
+            & UART_TX_ENABLE
+            & UART_INT_RX_BUF_FUL
+            & UART_ADR_DETECT_DIS
+            & UART_RX_OVERRUN_CLEAR;
+
+    //  Делаем расчет скорости работы модуля UART
+    unsigned int U_BRG = ((fcy / baudrate) / 4) - 1;
+
+    OpenUART1(U_MODE, U_STA, U_BRG);
+
+    ConfigIntUART1(UART_RX_INT_EN & UART_RX_INT_PR4
+                   & UART_TX_INT_EN & UART_TX_INT_PR4);
+}
+
 void PIC_USART_1_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
                                                  size_t cnt)
 {
