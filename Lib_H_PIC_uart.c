@@ -71,9 +71,16 @@ void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsigned lo
     ConfigIntUART1(UART_RX_INT_EN & UART_RX_INT_PR4
                    & UART_TX_INT_EN & UART_TX_INT_PR4);
 }
-
+/**
+ *  @brief  Функция выполняет конфигурирование модуля UART 1 в высокоскоротном 
+ *          режиме.
+ *          Параметры работы модуля USART 1 смотри в переменных "U_MODE" и "U_STA";
+ *  @param  fcy:    Частота работы микроконтроллера;
+ *  @param  baudrate:   Желаемая скорость работы модуля UART 1;
+ *  @retval None;
+ */
 void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt_HightSpeed(unsigned long fcy,
-                                                                              unsigned long baudrate)
+                                                                                unsigned long baudrate)
 {
     CloseUART1();
 
