@@ -56,6 +56,9 @@
 extern void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsigned long fcy,
         unsigned long baudrate);
 
+extern void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt_HightSpeed(unsigned long fcy,
+        unsigned long baudrate);
+
 extern void PIC_USART_1_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
         size_t cnt);
 
