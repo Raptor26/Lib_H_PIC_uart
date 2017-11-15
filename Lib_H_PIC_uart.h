@@ -67,22 +67,23 @@ extern void PIC_USART_1_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
 
 extern size_t PIC_USART_1_Rx_OverflowCheck(void);
 
-
 #endif //   (__PIC24H__) || defined(__dsPIC33E__) || defined(__PIC24E__)
 //==============================================================================
 
 
 //==============================================================================
 #if defined(__dsPIC33E__) || defined(__PIC24E__)
+
 //  Функции, относящиеся к модулю USART 2
 extern void PIC_Init_USART_2_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(unsigned long fcy,
         unsigned long baudrate);
 extern void PIC_USART_2_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
         size_t cnt);
+
 //  Функции, относящиеся к модулю USART 4
-
-
 extern void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsigned long fcy,
+        unsigned long baudrate);
+extern void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(unsigned long fcy,
         unsigned long baudrate);
 
 extern void PIC_USART_4_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
