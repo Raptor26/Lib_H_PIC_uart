@@ -55,7 +55,7 @@ void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsigned lo
             & UART_NO_PAR_8BIT
             & UART_1STOPBIT;
 
-    unsigned int U_STA = UART_INT_TX
+    unsigned int U_STA = UART_INT_TX_BUF_EMPTY
             & UART_IrDA_POL_INV_ZERO
             & UART_SYNC_BREAK_DISABLED
             & UART_TX_ENABLE
