@@ -59,7 +59,7 @@ extern void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsi
 extern void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnChar_TxIntEnBufEmpt(unsigned long fcy,
         unsigned long baudrate);
 
-extern void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt_HightSpeed(unsigned long fcy,
+extern void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt_HighSpeed(unsigned long fcy,
         unsigned long baudrate);
 
 extern void PIC_USART_1_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
@@ -77,6 +77,8 @@ extern size_t PIC_USART_1_Rx_OverflowCheck(void);
 //  Функции, относящиеся к модулю USART 2
 extern void PIC_Init_USART_2_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(unsigned long fcy,
         unsigned long baudrate);
+extern void PIC_Init_USART_2_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(unsigned long fcy,
+        unsigned long baudrate);
 extern void PIC_USART_2_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
         size_t cnt);
 
@@ -84,6 +86,8 @@ extern void PIC_USART_2_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
 extern void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsigned long fcy,
         unsigned long baudrate);
 extern void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(unsigned long fcy,
+        unsigned long baudrate);
+extern void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(unsigned long fcy,
         unsigned long baudrate);
 
 extern void PIC_USART_4_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
