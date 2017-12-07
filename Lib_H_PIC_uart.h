@@ -82,6 +82,10 @@ extern void PIC_Init_USART_2_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(unsig
 extern void PIC_USART_2_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
         size_t cnt);
 
+//  Функции, относящиеся к модулю USART 3
+extern void PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(unsigned long fcy,
+        unsigned long baudrate);
+
 //  Функции, относящиеся к модулю USART 4
 extern void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsigned long fcy,
         unsigned long baudrate);

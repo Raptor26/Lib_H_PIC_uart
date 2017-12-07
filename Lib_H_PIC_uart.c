@@ -274,6 +274,43 @@ void PIC_USART_2_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
     }
 }
 
+//  Функции, относящиеся к модулю USART 3
+
+void PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(unsigned long fcy,
+                                                                    unsigned long baudrate)
+{
+    CloseUART3();
+
+    unsigned int U_MODE = UART_EN
+            & UART_IDLE_CON
+            & UART_IrDA_DISABLE
+            & UART_MODE_FLOW
+            & UART_UEN_00
+            & UART_DIS_WAKE
+            & UART_DIS_LOOPBACK
+            & UART_DIS_ABAUD
+            & UART_UXRX_IDLE_ONE
+            & UART_BRGH_SIXTEEN
+            & UART_NO_PAR_8BIT
+            & UART_1STOPBIT;
+
+    unsigned int U_STA = UART_INT_TX_LAST_CH
+            & UART_IrDA_POL_INV_ZERO
+            & UART_SYNC_BREAK_DISABLED
+            & UART_TX_ENABLE
+            & UART_INT_RX_CHAR
+            & UART_ADR_DETECT_DIS
+            & UART_RX_OVERRUN_CLEAR;
+
+    //  Делаем расчет скорости работы модуля UART
+    unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
+
+    OpenUART2(U_MODE, U_STA, U_BRG);
+
+    ConfigIntUART3(UART_RX_INT_EN & UART_RX_INT_PR4
+                   & UART_TX_INT_EN & UART_TX_INT_PR4);
+}
+
 //  Функции, относящиеся к модулю USART 4
 
 void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsigned long fcy,
