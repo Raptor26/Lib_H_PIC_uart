@@ -34,9 +34,14 @@
 
 //------------------------------------------------------------------------------
 //==============================================================================
-//  Функции, относящиеся к модулю USART 1
+
+
 #if defined (__PIC24H__) || defined(__dsPIC33E__) || defined(__PIC24E__)
 
+/*############################################################################*/
+/*                  Функции, относящиеся к модулю USART 1                     */
+
+/*############################################################################*/
 void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsigned long fcy,
                                                                      unsigned long baudrate)
 {
@@ -116,7 +121,7 @@ void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnChar_TxIntEnBufEmpt(unsigned long
  *  @retval None;
  */
 void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt_HighSpeed(unsigned long fcy,
-                                                                                unsigned long baudrate)
+                                                                               unsigned long baudrate)
 {
     CloseUART1();
 
@@ -188,7 +193,11 @@ size_t PIC_USART_1_Rx_OverflowCheck(void)
 
 //==============================================================================
 #if defined(__dsPIC33E__) || defined(__PIC24E__)
-//  Функции, относящиеся к модулю USART 2
+
+/*############################################################################*/
+/*                  Функции, относящиеся к модулю USART 2                     */
+
+/*############################################################################*/
 
 void PIC_Init_USART_2_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(unsigned long fcy,
                                                                 unsigned long baudrate)
@@ -274,7 +283,10 @@ void PIC_USART_2_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
     }
 }
 
-//  Функции, относящиеся к модулю USART 3
+/*############################################################################*/
+/*                  Функции, относящиеся к модулю USART 3                     */
+
+/*############################################################################*/
 
 void PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(unsigned long fcy,
                                                                 unsigned long baudrate)
@@ -346,7 +358,10 @@ void PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(unsigned lon
                    & UART_TX_INT_EN & UART_TX_INT_PR4);
 }
 
-//  Функции, относящиеся к модулю USART 4
+/*############################################################################*/
+/*                  Функции, относящиеся к модулю USART 4                     */
+
+/*############################################################################*/
 
 void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsigned long fcy,
                                                                      unsigned long baudrate)
