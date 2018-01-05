@@ -1,4 +1,4 @@
-/** 
+/**
  * File:   Lib_H_PIC_uart.c
  * Author: Isaev
  *
@@ -35,13 +35,11 @@
 //------------------------------------------------------------------------------
 //==============================================================================
 
-
+// ############### //
+// <UART 1 module> //
+// ############### //
 #if defined (__PIC24H__) || defined(__dsPIC33E__) || defined(__PIC24E__)
 
-/*############################################################################*/
-/*                  Функции, относящиеся к модулю USART 1                     */
-
-/*############################################################################*/
 void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsigned long fcy,
                                                                      unsigned long baudrate)
 {
@@ -113,7 +111,7 @@ void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnChar_TxIntEnBufEmpt(unsigned long
 }
 
 /**
- *  @brief  Функция выполняет конфигурирование модуля UART 1 в высокоскоротном 
+ *  @brief  Функция выполняет конфигурирование модуля UART 1 в высокоскоротном
  *          режиме.
  *          Параметры работы модуля USART 1 смотри в переменных "U_MODE" и "U_STA";
  *  @param  fcy:    Частота работы микроконтроллера;
@@ -170,7 +168,7 @@ void PIC_USART_1_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
 }
 
 /**
- *  @brief  Функция выполняет проверку переполнения RX буфера USART1 и возвращает 
+ *  @brief  Функция выполняет проверку переполнения RX буфера USART1 и возвращает
  *          "1" если было обнаружено переполнение, иначе возвращает "0"
  *  @return "1" - если было обнаружено переполнение RX буфера USART1,
  *          "0" - если переполнение не было обнаружено
@@ -186,18 +184,13 @@ size_t PIC_USART_1_Rx_OverflowCheck(void)
         return 0; //            Если переполнения нет;
     }
 }
-
 #endif //   (__PIC24H__) || defined(__dsPIC33E__) || defined(__PIC24E__)
-//==============================================================================
 
 
-//==============================================================================
+// ############### //
+// <UART 2 module> //
+// ############### //
 #if defined(__dsPIC33E__) || defined(__PIC24E__)
-
-/*############################################################################*/
-/*                  Функции, относящиеся к модулю USART 2                     */
-
-/*############################################################################*/
 
 void PIC_Init_USART_2_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(unsigned long fcy,
                                                                 unsigned long baudrate)
@@ -282,11 +275,13 @@ void PIC_USART_2_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
         U2TXREG = *pDataArr++;
     }
 }
+#endif //   (__dsPIC33E__) || defined(__PIC24E__)
 
-/*############################################################################*/
-/*                  Функции, относящиеся к модулю USART 3                     */
 
-/*############################################################################*/
+// ############### //
+// <UART 3 module> //
+// ############### //
+#if defined(__dsPIC33E__) || defined(__PIC24E__)
 
 void PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(unsigned long fcy,
                                                                 unsigned long baudrate)
@@ -357,11 +352,13 @@ void PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(unsigned lon
     ConfigIntUART3(UART_RX_INT_EN & UART_RX_INT_PR4
                    & UART_TX_INT_EN & UART_TX_INT_PR4);
 }
+#endif //   (__dsPIC33E__) || defined(__PIC24E__)
 
-/*############################################################################*/
-/*                  Функции, относящиеся к модулю USART 4                     */
 
-/*############################################################################*/
+// ############### //
+// <UART 4 module> //
+// ############### //
+#if defined(__dsPIC33E__) || defined(__PIC24E__)
 
 void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsigned long fcy,
                                                                      unsigned long baudrate)
