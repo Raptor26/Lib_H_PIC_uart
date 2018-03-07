@@ -48,7 +48,7 @@ void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsigned lo
     unsigned int U_MODE = UART_EN
             & UART_IDLE_CON
             & UART_IrDA_DISABLE
-            & UART_MODE_FLOW
+            & UART_MODE_SIMPLEX
             & UART_UEN_00
             & UART_DIS_WAKE
             & UART_DIS_LOOPBACK
@@ -83,7 +83,7 @@ void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnChar_TxIntEnBufEmpt(unsigned long
     unsigned int U_MODE = UART_EN
             & UART_IDLE_CON
             & UART_IrDA_DISABLE
-            & UART_MODE_FLOW
+            & UART_MODE_SIMPLEX
             & UART_UEN_00
             & UART_DIS_WAKE
             & UART_DIS_LOOPBACK
@@ -126,7 +126,7 @@ void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt_HighSpeed(u
     unsigned int U_MODE = UART_EN
             & UART_IDLE_CON
             & UART_IrDA_DISABLE
-            & UART_MODE_FLOW
+            & UART_MODE_SIMPLEX
             & UART_UEN_00
             & UART_DIS_WAKE
             & UART_DIS_LOOPBACK
@@ -200,7 +200,7 @@ void PIC_Init_USART_2_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(unsigned long fc
     unsigned int U_MODE = UART_EN
             & UART_IDLE_CON
             & UART_IrDA_DISABLE
-            & UART_MODE_FLOW
+            & UART_MODE_SIMPLEX
             & UART_UEN_00
             & UART_DIS_WAKE
             & UART_DIS_LOOPBACK
@@ -235,7 +235,7 @@ void PIC_Init_USART_2_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(unsigned lon
     unsigned int U_MODE = UART_EN
             & UART_IDLE_CON
             & UART_IrDA_DISABLE
-            & UART_MODE_FLOW
+            & UART_MODE_SIMPLEX
             & UART_UEN_00
             & UART_DIS_WAKE
             & UART_DIS_LOOPBACK
@@ -291,7 +291,7 @@ void PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(unsigned long fc
     unsigned int U_MODE = UART_EN
             & UART_IDLE_CON
             & UART_IrDA_DISABLE
-            & UART_MODE_FLOW
+            & UART_MODE_SIMPLEX
             & UART_UEN_00
             & UART_DIS_WAKE
             & UART_DIS_LOOPBACK
@@ -326,7 +326,7 @@ void PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(unsigned lon
     unsigned int U_MODE = UART_EN
             & UART_IDLE_CON
             & UART_IrDA_DISABLE
-            & UART_MODE_FLOW
+            & UART_MODE_SIMPLEX
             & UART_UEN_00
             & UART_DIS_WAKE
             & UART_DIS_LOOPBACK
@@ -367,7 +367,7 @@ void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsigned lo
     unsigned int U_MODE = UART_EN
             & UART_IDLE_CON
             & UART_IrDA_DISABLE
-            & UART_MODE_FLOW
+            & UART_MODE_SIMPLEX
             & UART_UEN_00
             & UART_DIS_WAKE
             & UART_DIS_LOOPBACK
@@ -402,7 +402,7 @@ void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(unsigned long fc
     unsigned int U_MODE = UART_EN
             & UART_IDLE_CON
             & UART_IrDA_DISABLE
-            & UART_MODE_FLOW
+            & UART_MODE_SIMPLEX
             & UART_UEN_00
             & UART_DIS_WAKE
             & UART_DIS_LOOPBACK
@@ -437,7 +437,7 @@ void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(unsigned lon
     unsigned int U_MODE = UART_EN
             & UART_IDLE_CON
             & UART_IrDA_DISABLE
-            & UART_MODE_FLOW
+            & UART_MODE_SIMPLEX
             & UART_UEN_00
             & UART_DIS_WAKE
             & UART_DIS_LOOPBACK
