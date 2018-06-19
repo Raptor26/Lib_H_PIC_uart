@@ -85,9 +85,19 @@ extern void PIC_USART_2_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
 // <UART 3 module> //
 // ############### //
 #if defined(__dsPIC33E__) || defined(__PIC24E__)
-extern void PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(unsigned long fcy,
+extern void 
+PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(
+unsigned long fcy,
         unsigned long baudrate);
-extern void PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(unsigned long fcy,
+
+extern void 
+PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnChar_HightSpeed(
+unsigned long fcy,
+                                                                unsigned long baudrate);
+
+extern void 
+PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(
+unsigned long fcy,
         unsigned long baudrate);
 #endif //   (__dsPIC33E__) || defined(__PIC24E__)
 

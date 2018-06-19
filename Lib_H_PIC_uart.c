@@ -318,6 +318,43 @@ void PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(unsigned long fc
                    & UART_TX_INT_EN & UART_TX_INT_PR1);
 }
 
+void 
+PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnChar_HightSpeed(
+unsigned long fcy,
+                                                                unsigned long baudrate)
+{
+    CloseUART3();
+
+    unsigned int U_MODE = UART_EN
+            & UART_IDLE_CON
+            & UART_IrDA_DISABLE
+            & UART_MODE_SIMPLEX
+            & UART_UEN_00
+            & UART_DIS_WAKE
+            & UART_DIS_LOOPBACK
+            & UART_DIS_ABAUD
+            & UART_UXRX_IDLE_ONE
+            & UART_BRGH_FOUR
+            & UART_NO_PAR_8BIT
+            & UART_1STOPBIT;
+
+    unsigned int U_STA = UART_INT_TX
+            & UART_IrDA_POL_INV_ZERO
+            & UART_SYNC_BREAK_DISABLED
+            & UART_TX_ENABLE
+            & UART_INT_RX_CHAR
+            & UART_ADR_DETECT_DIS
+            & UART_RX_OVERRUN_CLEAR;
+
+    //  Делаем расчет скорости работы модуля UART
+    unsigned int U_BRG = ((fcy / baudrate) / 4) - 1;
+
+    OpenUART3(U_MODE, U_STA, U_BRG);
+
+    ConfigIntUART3(UART_RX_INT_EN & UART_RX_INT_PR1
+                   & UART_TX_INT_EN & UART_TX_INT_PR1);
+}
+
 void PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(unsigned long fcy,
                                                                     unsigned long baudrate)
 {
