@@ -40,74 +40,84 @@
 // ############### //
 #if defined (__PIC24H__) || defined(__dsPIC33E__) || defined(__PIC24E__)
 
-void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsigned long fcy,
-                                                                     unsigned long baudrate)
+void
+PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(
+	unsigned long fcy,
+	unsigned long baudrate)
 {
-    CloseUART1();
+	CloseUART1();
 
-    unsigned int U_MODE = UART_EN
-            & UART_IDLE_CON
-            & UART_IrDA_DISABLE
-            & UART_MODE_SIMPLEX
-            & UART_UEN_00
-            & UART_DIS_WAKE
-            & UART_DIS_LOOPBACK
-            & UART_DIS_ABAUD
-            & UART_UXRX_IDLE_ONE
-            & UART_BRGH_SIXTEEN
-            & UART_NO_PAR_8BIT
-            & UART_1STOPBIT;
+	unsigned int U_MODE = UART_EN
+						  & UART_IDLE_CON
+						  & UART_IrDA_DISABLE
+						  & UART_MODE_SIMPLEX
+						  & UART_UEN_00
+						  & UART_DIS_WAKE
+						  & UART_DIS_LOOPBACK
+						  & UART_DIS_ABAUD
+						  & UART_UXRX_IDLE_ONE
+						  & UART_BRGH_SIXTEEN
+						  & UART_NO_PAR_8BIT
+						  & UART_1STOPBIT;
 
-    unsigned int U_STA = UART_INT_TX_BUF_EMPTY
-            & UART_IrDA_POL_INV_ZERO
-            & UART_SYNC_BREAK_DISABLED
-            & UART_TX_ENABLE
-            & UART_INT_RX_BUF_FUL
-            & UART_ADR_DETECT_DIS
-            & UART_RX_OVERRUN_CLEAR;
+	unsigned int U_STA = UART_INT_TX_BUF_EMPTY
+						 & UART_IrDA_POL_INV_ZERO
+						 & UART_SYNC_BREAK_DISABLED
+						 & UART_TX_ENABLE
+						 & UART_INT_RX_BUF_FUL
+						 & UART_ADR_DETECT_DIS
+						 & UART_RX_OVERRUN_CLEAR;
 
-    //  Делаем расчет скорости работы модуля UART
-    unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
+	//  Делаем расчет скорости работы модуля UART
+	unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
 
-    OpenUART1(U_MODE, U_STA, U_BRG);
+	OpenUART1(
+		U_MODE,
+		U_STA, U_BRG);
 
-    ConfigIntUART1(UART_RX_INT_EN & UART_RX_INT_PR4
-                   & UART_TX_INT_EN & UART_TX_INT_PR4);
+	ConfigIntUART1(
+		UART_RX_INT_EN & UART_RX_INT_PR4
+		& UART_TX_INT_EN & UART_TX_INT_PR4);
 }
 
-void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnChar_TxIntEnBufEmpt(unsigned long fcy,
-                                                                   unsigned long baudrate)
+void
+PIC_Init_USART_1_1StopBit_8BitData_RxIntEnChar_TxIntEnBufEmpt(
+	unsigned long fcy,
+	unsigned long baudrate)
 {
-    CloseUART1();
+	CloseUART1();
 
-    unsigned int U_MODE = UART_EN
-            & UART_IDLE_CON
-            & UART_IrDA_DISABLE
-            & UART_MODE_SIMPLEX
-            & UART_UEN_00
-            & UART_DIS_WAKE
-            & UART_DIS_LOOPBACK
-            & UART_DIS_ABAUD
-            & UART_UXRX_IDLE_ONE
-            & UART_BRGH_SIXTEEN
-            & UART_NO_PAR_8BIT
-            & UART_1STOPBIT;
+	unsigned int U_MODE = UART_EN
+						  & UART_IDLE_CON
+						  & UART_IrDA_DISABLE
+						  & UART_MODE_SIMPLEX
+						  & UART_UEN_00
+						  & UART_DIS_WAKE
+						  & UART_DIS_LOOPBACK
+						  & UART_DIS_ABAUD
+						  & UART_UXRX_IDLE_ONE
+						  & UART_BRGH_SIXTEEN
+						  & UART_NO_PAR_8BIT
+						  & UART_1STOPBIT;
 
-    unsigned int U_STA = UART_INT_TX_BUF_EMPTY
-            & UART_IrDA_POL_INV_ZERO
-            & UART_SYNC_BREAK_DISABLED
-            & UART_TX_ENABLE
-            & UART_INT_RX_CHAR
-            & UART_ADR_DETECT_DIS
-            & UART_RX_OVERRUN_CLEAR;
+	unsigned int U_STA = UART_INT_TX_BUF_EMPTY
+						 & UART_IrDA_POL_INV_ZERO
+						 & UART_SYNC_BREAK_DISABLED
+						 & UART_TX_ENABLE
+						 & UART_INT_RX_CHAR
+						 & UART_ADR_DETECT_DIS
+						 & UART_RX_OVERRUN_CLEAR;
 
-    //  Делаем расчет скорости работы модуля UART
-    unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
+	//  Делаем расчет скорости работы модуля UART
+	unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
 
-    OpenUART1(U_MODE, U_STA, U_BRG);
+	OpenUART1(
+		U_MODE,
+		U_STA, U_BRG);
 
-    ConfigIntUART1(UART_RX_INT_EN & UART_RX_INT_PR4
-                   & UART_TX_INT_EN & UART_TX_INT_PR4);
+	ConfigIntUART1(
+		UART_RX_INT_EN & UART_RX_INT_PR4
+		& UART_TX_INT_EN & UART_TX_INT_PR4);
 }
 
 /**
@@ -118,53 +128,59 @@ void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnChar_TxIntEnBufEmpt(unsigned long
  *  @param  baudrate:   Желаемая скорость работы модуля UART 1;
  *  @retval None;
  */
-void PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt_HighSpeed(unsigned long fcy,
-                                                                               unsigned long baudrate)
+void
+PIC_Init_USART_1_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt_HighSpeed(
+	unsigned long fcy,
+	unsigned long baudrate)
 {
-    CloseUART1();
+	CloseUART1();
 
-    unsigned int U_MODE = UART_EN
-            & UART_IDLE_CON
-            & UART_IrDA_DISABLE
-            & UART_MODE_SIMPLEX
-            & UART_UEN_00
-            & UART_DIS_WAKE
-            & UART_DIS_LOOPBACK
-            & UART_DIS_ABAUD
-            & UART_UXRX_IDLE_ONE
-            & UART_BRGH_FOUR
-            & UART_NO_PAR_8BIT
-            & UART_1STOPBIT;
+	unsigned int U_MODE = UART_EN
+						  & UART_IDLE_CON
+						  & UART_IrDA_DISABLE
+						  & UART_MODE_SIMPLEX
+						  & UART_UEN_00
+						  & UART_DIS_WAKE
+						  & UART_DIS_LOOPBACK
+						  & UART_DIS_ABAUD
+						  & UART_UXRX_IDLE_ONE
+						  & UART_BRGH_FOUR
+						  & UART_NO_PAR_8BIT
+						  & UART_1STOPBIT;
 
-    unsigned int U_STA = UART_INT_TX_BUF_EMPTY
-            & UART_IrDA_POL_INV_ZERO
-            & UART_SYNC_BREAK_DISABLED
-            & UART_TX_ENABLE
-            & UART_INT_RX_BUF_FUL
-            & UART_ADR_DETECT_DIS
-            & UART_RX_OVERRUN_CLEAR;
+	unsigned int U_STA = UART_INT_TX_BUF_EMPTY
+						 & UART_IrDA_POL_INV_ZERO
+						 & UART_SYNC_BREAK_DISABLED
+						 & UART_TX_ENABLE
+						 & UART_INT_RX_BUF_FUL
+						 & UART_ADR_DETECT_DIS
+						 & UART_RX_OVERRUN_CLEAR;
 
-    //  Делаем расчет скорости работы модуля UART
-    unsigned int U_BRG = ((fcy / baudrate) / 4) - 1;
+	//  Делаем расчет скорости работы модуля UART
+	unsigned int U_BRG = ((fcy / baudrate) / 4) - 1;
 
-    OpenUART1(U_MODE, U_STA, U_BRG);
+	OpenUART1(
+		U_MODE, U_STA, U_BRG);
 
-    ConfigIntUART1(UART_RX_INT_EN & UART_RX_INT_PR4
-                   & UART_TX_INT_EN & UART_TX_INT_PR4);
+	ConfigIntUART1(
+		UART_RX_INT_EN & UART_RX_INT_PR4
+		& UART_TX_INT_EN & UART_TX_INT_PR4);
 }
 
-void PIC_USART_1_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
-                                                 size_t cnt)
+void
+PIC_USART_1_TransmitPackageWithOutInterrupt(
+	uint8_t *pDataArr,
+	size_t cnt)
 {
-    size_t i;
-    for (i = 0; i < cnt; i++)
-    {
-        //  Ждем пока бит не будет сброшен в "0";
-        while (U1STAbits.UTXBF != 0);
+	size_t i;
+	for (i = 0; i < cnt; i++)
+	{
+		//  Ждем пока бит не будет сброшен в "0";
+		while (U1STAbits.UTXBF != 0);
 
-        //  Копируем в буфер UART_transmit байт данных;
-        U1TXREG = *pDataArr++;
-    }
+		//  Копируем в буфер UART_transmit байт данных;
+		U1TXREG = *pDataArr++;
+	}
 }
 
 /**
@@ -175,14 +191,14 @@ void PIC_USART_1_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
  */
 size_t PIC_USART_1_Rx_OverflowCheck(void)
 {
-    if (U1STAbits.OERR == 1)
-    {
-        return 1; //            Если было обнаружено переполнение;
-    }
-    else
-    {
-        return 0; //            Если переполнения нет;
-    }
+	if (U1STAbits.OERR == 1)
+	{
+		return 1; //            Если было обнаружено переполнение;
+	}
+	else
+	{
+		return 0; //            Если переполнения нет;
+	}
 }
 #endif //   (__PIC24H__) || defined(__dsPIC33E__) || defined(__PIC24E__)
 
@@ -192,88 +208,98 @@ size_t PIC_USART_1_Rx_OverflowCheck(void)
 // ############### //
 #if defined(__dsPIC33E__) || defined(__PIC24E__)
 
-void PIC_Init_USART_2_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(unsigned long fcy,
-                                                                unsigned long baudrate)
+void
+PIC_Init_USART_2_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(
+	unsigned long fcy,
+	unsigned long baudrate)
 {
-    CloseUART2();
+	CloseUART2();
 
-    unsigned int U_MODE = UART_EN
-            & UART_IDLE_CON
-            & UART_IrDA_DISABLE
-            & UART_MODE_SIMPLEX
-            & UART_UEN_00
-            & UART_DIS_WAKE
-            & UART_DIS_LOOPBACK
-            & UART_DIS_ABAUD
-            & UART_UXRX_IDLE_ONE
-            & UART_BRGH_SIXTEEN
-            & UART_NO_PAR_8BIT
-            & UART_1STOPBIT;
+	unsigned int U_MODE = UART_EN
+						  & UART_IDLE_CON
+						  & UART_IrDA_DISABLE
+						  & UART_MODE_SIMPLEX
+						  & UART_UEN_00
+						  & UART_DIS_WAKE
+						  & UART_DIS_LOOPBACK
+						  & UART_DIS_ABAUD
+						  & UART_UXRX_IDLE_ONE
+						  & UART_BRGH_SIXTEEN
+						  & UART_NO_PAR_8BIT
+						  & UART_1STOPBIT;
 
-    unsigned int U_STA = UART_INT_TX
-            & UART_IrDA_POL_INV_ZERO
-            & UART_SYNC_BREAK_DISABLED
-            & UART_TX_ENABLE
-            & UART_INT_RX_CHAR
-            & UART_ADR_DETECT_DIS
-            & UART_RX_OVERRUN_CLEAR;
+	unsigned int U_STA = UART_INT_TX
+						 & UART_IrDA_POL_INV_ZERO
+						 & UART_SYNC_BREAK_DISABLED
+						 & UART_TX_ENABLE
+						 & UART_INT_RX_CHAR
+						 & UART_ADR_DETECT_DIS
+						 & UART_RX_OVERRUN_CLEAR;
 
-    //  Делаем расчет скорости работы модуля UART
-    unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
+	//  Делаем расчет скорости работы модуля UART
+	unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
 
-    OpenUART2(U_MODE, U_STA, U_BRG);
+	OpenUART2(
+		U_MODE, U_STA, U_BRG);
 
-    ConfigIntUART2(UART_RX_INT_EN & UART_RX_INT_PR4
-                   & UART_TX_INT_EN & UART_TX_INT_PR4);
+	ConfigIntUART2(
+		UART_RX_INT_EN & UART_RX_INT_PR4
+		& UART_TX_INT_EN & UART_TX_INT_PR4);
 }
 
-void PIC_Init_USART_2_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(unsigned long fcy,
-                                                                    unsigned long baudrate)
+void
+PIC_Init_USART_2_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(
+	unsigned long fcy,
+	unsigned long baudrate)
 {
-    CloseUART2();
+	CloseUART2();
 
-    unsigned int U_MODE = UART_EN
-            & UART_IDLE_CON
-            & UART_IrDA_DISABLE
-            & UART_MODE_SIMPLEX
-            & UART_UEN_00
-            & UART_DIS_WAKE
-            & UART_DIS_LOOPBACK
-            & UART_DIS_ABAUD
-            & UART_UXRX_IDLE_ONE
-            & UART_BRGH_SIXTEEN
-            & UART_NO_PAR_8BIT
-            & UART_1STOPBIT;
+	unsigned int U_MODE = UART_EN
+						  & UART_IDLE_CON
+						  & UART_IrDA_DISABLE
+						  & UART_MODE_SIMPLEX
+						  & UART_UEN_00
+						  & UART_DIS_WAKE
+						  & UART_DIS_LOOPBACK
+						  & UART_DIS_ABAUD
+						  & UART_UXRX_IDLE_ONE
+						  & UART_BRGH_SIXTEEN
+						  & UART_NO_PAR_8BIT
+						  & UART_1STOPBIT;
 
-    unsigned int U_STA = UART_INT_TX_LAST_CH
-            & UART_IrDA_POL_INV_ZERO
-            & UART_SYNC_BREAK_DISABLED
-            & UART_TX_ENABLE
-            & UART_INT_RX_CHAR
-            & UART_ADR_DETECT_DIS
-            & UART_RX_OVERRUN_CLEAR;
+	unsigned int U_STA = UART_INT_TX_LAST_CH
+						 & UART_IrDA_POL_INV_ZERO
+						 & UART_SYNC_BREAK_DISABLED
+						 & UART_TX_ENABLE
+						 & UART_INT_RX_CHAR
+						 & UART_ADR_DETECT_DIS
+						 & UART_RX_OVERRUN_CLEAR;
 
-    //  Делаем расчет скорости работы модуля UART
-    unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
+	//  Делаем расчет скорости работы модуля UART
+	unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
 
-    OpenUART2(U_MODE, U_STA, U_BRG);
+	OpenUART2(
+		U_MODE, U_STA, U_BRG);
 
-    ConfigIntUART2(UART_RX_INT_EN & UART_RX_INT_PR4
-                   & UART_TX_INT_EN & UART_TX_INT_PR4);
+	ConfigIntUART2(
+		UART_RX_INT_EN & UART_RX_INT_PR4
+		& UART_TX_INT_EN & UART_TX_INT_PR4);
 }
 
-void PIC_USART_2_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
-                                                 size_t cnt)
+void
+PIC_USART_2_TransmitPackageWithOutInterrupt(
+	uint8_t *pDataArr,
+	size_t cnt)
 {
-    size_t i;
-    for (i = 0; i < cnt; i++)
-    {
-        //  Ждем пока бит не будет сброшен в "0";
-        while (U2STAbits.UTXBF != 0);
+	size_t i;
+	for (i = 0; i < cnt; i++)
+	{
+		//  Ждем пока бит не будет сброшен в "0";
+		while (U2STAbits.UTXBF != 0);
 
-        //  Копируем в буфер UART_transmit байт данных;
-        U2TXREG = *pDataArr++;
-    }
+		//  Копируем в буфер UART_transmit байт данных;
+		U2TXREG = *pDataArr++;
+	}
 }
 #endif //   (__dsPIC33E__) || defined(__PIC24E__)
 
@@ -283,111 +309,120 @@ void PIC_USART_2_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
 // ############### //
 #if defined(__dsPIC33E__) || defined(__PIC24E__)
 
-void PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(unsigned long fcy,
-                                                                unsigned long baudrate)
+void
+PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(
+	unsigned long fcy,
+	unsigned long baudrate)
 {
-    CloseUART3();
+	CloseUART3();
 
-    unsigned int U_MODE = UART_EN
-            & UART_IDLE_CON
-            & UART_IrDA_DISABLE
-            & UART_MODE_SIMPLEX
-            & UART_UEN_00
-            & UART_DIS_WAKE
-            & UART_DIS_LOOPBACK
-            & UART_DIS_ABAUD
-            & UART_UXRX_IDLE_ONE
-            & UART_BRGH_SIXTEEN
-            & UART_NO_PAR_8BIT
-            & UART_1STOPBIT;
+	unsigned int U_MODE = UART_EN
+						  & UART_IDLE_CON
+						  & UART_IrDA_DISABLE
+						  & UART_MODE_SIMPLEX
+						  & UART_UEN_00
+						  & UART_DIS_WAKE
+						  & UART_DIS_LOOPBACK
+						  & UART_DIS_ABAUD
+						  & UART_UXRX_IDLE_ONE
+						  & UART_BRGH_SIXTEEN
+						  & UART_NO_PAR_8BIT
+						  & UART_1STOPBIT;
 
-    unsigned int U_STA = UART_INT_TX
-            & UART_IrDA_POL_INV_ZERO
-            & UART_SYNC_BREAK_DISABLED
-            & UART_TX_ENABLE
-            & UART_INT_RX_CHAR
-            & UART_ADR_DETECT_DIS
-            & UART_RX_OVERRUN_CLEAR;
+	unsigned int U_STA = UART_INT_TX
+						 & UART_IrDA_POL_INV_ZERO
+						 & UART_SYNC_BREAK_DISABLED
+						 & UART_TX_ENABLE
+						 & UART_INT_RX_CHAR
+						 & UART_ADR_DETECT_DIS
+						 & UART_RX_OVERRUN_CLEAR;
 
-    //  Делаем расчет скорости работы модуля UART
-    unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
+	//  Делаем расчет скорости работы модуля UART
+	unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
 
-    OpenUART3(U_MODE, U_STA, U_BRG);
+	OpenUART3(
+		U_MODE, U_STA, U_BRG);
 
-    ConfigIntUART3(UART_RX_INT_EN & UART_RX_INT_PR1
-                   & UART_TX_INT_EN & UART_TX_INT_PR1);
+	ConfigIntUART3(
+		UART_RX_INT_EN & UART_RX_INT_PR1
+		& UART_TX_INT_EN & UART_TX_INT_PR1);
 }
 
-void 
+void
 PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnChar_HightSpeed(
-unsigned long fcy,
-                                                                unsigned long baudrate)
+	unsigned long fcy,
+	unsigned long baudrate)
 {
-    CloseUART3();
+	CloseUART3();
 
-    unsigned int U_MODE = UART_EN
-            & UART_IDLE_CON
-            & UART_IrDA_DISABLE
-            & UART_MODE_SIMPLEX
-            & UART_UEN_00
-            & UART_DIS_WAKE
-            & UART_DIS_LOOPBACK
-            & UART_DIS_ABAUD
-            & UART_UXRX_IDLE_ONE
-            & UART_BRGH_FOUR
-            & UART_NO_PAR_8BIT
-            & UART_1STOPBIT;
+	unsigned int U_MODE = UART_EN
+						  & UART_IDLE_CON
+						  & UART_IrDA_DISABLE
+						  & UART_MODE_SIMPLEX
+						  & UART_UEN_00
+						  & UART_DIS_WAKE
+						  & UART_DIS_LOOPBACK
+						  & UART_DIS_ABAUD
+						  & UART_UXRX_IDLE_ONE
+						  & UART_BRGH_FOUR
+						  & UART_NO_PAR_8BIT
+						  & UART_1STOPBIT;
 
-    unsigned int U_STA = UART_INT_TX
-            & UART_IrDA_POL_INV_ZERO
-            & UART_SYNC_BREAK_DISABLED
-            & UART_TX_ENABLE
-            & UART_INT_RX_CHAR
-            & UART_ADR_DETECT_DIS
-            & UART_RX_OVERRUN_CLEAR;
+	unsigned int U_STA = UART_INT_TX
+						 & UART_IrDA_POL_INV_ZERO
+						 & UART_SYNC_BREAK_DISABLED
+						 & UART_TX_ENABLE
+						 & UART_INT_RX_CHAR
+						 & UART_ADR_DETECT_DIS
+						 & UART_RX_OVERRUN_CLEAR;
 
-    //  Делаем расчет скорости работы модуля UART
-    unsigned int U_BRG = ((fcy / baudrate) / 4) - 1;
+	//  Делаем расчет скорости работы модуля UART
+	unsigned int U_BRG = ((fcy / baudrate) / 4) - 1;
 
-    OpenUART3(U_MODE, U_STA, U_BRG);
+	OpenUART3(
+		U_MODE, U_STA, U_BRG);
 
-    ConfigIntUART3(UART_RX_INT_EN & UART_RX_INT_PR1
-                   & UART_TX_INT_EN & UART_TX_INT_PR1);
+	ConfigIntUART3(
+		UART_RX_INT_EN & UART_RX_INT_PR1
+		& UART_TX_INT_EN & UART_TX_INT_PR1);
 }
 
-void PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(unsigned long fcy,
-                                                                    unsigned long baudrate)
+void
+PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(unsigned long fcy,
+		unsigned long baudrate)
 {
-    CloseUART3();
+	CloseUART3();
 
-    unsigned int U_MODE = UART_EN
-            & UART_IDLE_CON
-            & UART_IrDA_DISABLE
-            & UART_MODE_SIMPLEX
-            & UART_UEN_00
-            & UART_DIS_WAKE
-            & UART_DIS_LOOPBACK
-            & UART_DIS_ABAUD
-            & UART_UXRX_IDLE_ONE
-            & UART_BRGH_SIXTEEN
-            & UART_NO_PAR_8BIT
-            & UART_1STOPBIT;
+	unsigned int U_MODE = UART_EN
+						  & UART_IDLE_CON
+						  & UART_IrDA_DISABLE
+						  & UART_MODE_SIMPLEX
+						  & UART_UEN_00
+						  & UART_DIS_WAKE
+						  & UART_DIS_LOOPBACK
+						  & UART_DIS_ABAUD
+						  & UART_UXRX_IDLE_ONE
+						  & UART_BRGH_SIXTEEN
+						  & UART_NO_PAR_8BIT
+						  & UART_1STOPBIT;
 
-    unsigned int U_STA = UART_INT_TX_LAST_CH
-            & UART_IrDA_POL_INV_ZERO
-            & UART_SYNC_BREAK_DISABLED
-            & UART_TX_ENABLE
-            & UART_INT_RX_CHAR
-            & UART_ADR_DETECT_DIS
-            & UART_RX_OVERRUN_CLEAR;
+	unsigned int U_STA = UART_INT_TX_LAST_CH
+						 & UART_IrDA_POL_INV_ZERO
+						 & UART_SYNC_BREAK_DISABLED
+						 & UART_TX_ENABLE
+						 & UART_INT_RX_CHAR
+						 & UART_ADR_DETECT_DIS
+						 & UART_RX_OVERRUN_CLEAR;
 
-    //  Делаем расчет скорости работы модуля UART
-    unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
+	//  Делаем расчет скорости работы модуля UART
+	unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
 
-    OpenUART3(U_MODE, U_STA, U_BRG);
+	OpenUART3(
+		U_MODE, U_STA, U_BRG);
 
-    ConfigIntUART3(UART_RX_INT_EN & UART_RX_INT_PR4
-                   & UART_TX_INT_EN & UART_TX_INT_PR4);
+	ConfigIntUART3(
+		UART_RX_INT_EN & UART_RX_INT_PR4
+		& UART_TX_INT_EN & UART_TX_INT_PR4);
 }
 #endif //   (__dsPIC33E__) || defined(__PIC24E__)
 
@@ -397,122 +432,135 @@ void PIC_Init_USART_3_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(unsigned lon
 // ############### //
 #if defined(__dsPIC33E__) || defined(__PIC24E__)
 
-void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(unsigned long fcy,
-                                                                     unsigned long baudrate)
+void
+PIC_Init_USART_4_1StopBit_8BitData_RxIntEnBufFul_TxIntEnBufEmpt(
+	unsigned long fcy,
+	unsigned long baudrate)
 {
-    CloseUART4();
-    unsigned int U_MODE = UART_EN
-            & UART_IDLE_CON
-            & UART_IrDA_DISABLE
-            & UART_MODE_SIMPLEX
-            & UART_UEN_00
-            & UART_DIS_WAKE
-            & UART_DIS_LOOPBACK
-            & UART_DIS_ABAUD
-            & UART_UXRX_IDLE_ONE
-            & UART_BRGH_SIXTEEN
-            & UART_NO_PAR_8BIT
-            & UART_1STOPBIT;
+	CloseUART4();
+	unsigned int U_MODE = UART_EN
+						  & UART_IDLE_CON
+						  & UART_IrDA_DISABLE
+						  & UART_MODE_SIMPLEX
+						  & UART_UEN_00
+						  & UART_DIS_WAKE
+						  & UART_DIS_LOOPBACK
+						  & UART_DIS_ABAUD
+						  & UART_UXRX_IDLE_ONE
+						  & UART_BRGH_SIXTEEN
+						  & UART_NO_PAR_8BIT
+						  & UART_1STOPBIT;
 
-    unsigned int U_STA = UART_INT_TX_BUF_EMPTY
-            & UART_IrDA_POL_INV_ZERO
-            & UART_SYNC_BREAK_DISABLED
-            & UART_TX_ENABLE
-            & UART_INT_RX_BUF_FUL
-            & UART_ADR_DETECT_DIS
-            & UART_RX_OVERRUN_CLEAR;
+	unsigned int U_STA = UART_INT_TX_BUF_EMPTY
+						 & UART_IrDA_POL_INV_ZERO
+						 & UART_SYNC_BREAK_DISABLED
+						 & UART_TX_ENABLE
+						 & UART_INT_RX_BUF_FUL
+						 & UART_ADR_DETECT_DIS
+						 & UART_RX_OVERRUN_CLEAR;
 
-    //  Делаем расчет скорости работы модуля UART
-    unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
+	//  Делаем расчет скорости работы модуля UART
+	unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
 
-    OpenUART4(U_MODE, U_STA, U_BRG);
+	OpenUART4(
+		U_MODE, U_STA, U_BRG);
 
-    ConfigIntUART4(UART_RX_INT_EN & UART_RX_INT_PR4
-                   & UART_TX_INT_EN & UART_TX_INT_PR4);
+	ConfigIntUART4(
+		UART_RX_INT_EN & UART_RX_INT_PR4
+		& UART_TX_INT_EN & UART_TX_INT_PR4);
 }
 
-void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(unsigned long fcy,
-                                                                unsigned long baudrate)
+void
+PIC_Init_USART_4_1StopBit_8BitData_RxIntEnChar_TxIntEnChar(
+	unsigned long fcy,
+	unsigned long baudrate)
 {
-    CloseUART4();
+	CloseUART4();
 
-    unsigned int U_MODE = UART_EN
-            & UART_IDLE_CON
-            & UART_IrDA_DISABLE
-            & UART_MODE_SIMPLEX
-            & UART_UEN_00
-            & UART_DIS_WAKE
-            & UART_DIS_LOOPBACK
-            & UART_DIS_ABAUD
-            & UART_UXRX_IDLE_ONE
-            & UART_BRGH_SIXTEEN
-            & UART_NO_PAR_8BIT
-            & UART_1STOPBIT;
+	unsigned int U_MODE = UART_EN
+						  & UART_IDLE_CON
+						  & UART_IrDA_DISABLE
+						  & UART_MODE_SIMPLEX
+						  & UART_UEN_00
+						  & UART_DIS_WAKE
+						  & UART_DIS_LOOPBACK
+						  & UART_DIS_ABAUD
+						  & UART_UXRX_IDLE_ONE
+						  & UART_BRGH_SIXTEEN
+						  & UART_NO_PAR_8BIT
+						  & UART_1STOPBIT;
 
-    unsigned int U_STA = UART_INT_TX
-            & UART_IrDA_POL_INV_ZERO
-            & UART_SYNC_BREAK_DISABLED
-            & UART_TX_ENABLE
-            & UART_INT_RX_CHAR
-            & UART_ADR_DETECT_DIS
-            & UART_RX_OVERRUN_CLEAR;
+	unsigned int U_STA = UART_INT_TX
+						 & UART_IrDA_POL_INV_ZERO
+						 & UART_SYNC_BREAK_DISABLED
+						 & UART_TX_ENABLE
+						 & UART_INT_RX_CHAR
+						 & UART_ADR_DETECT_DIS
+						 & UART_RX_OVERRUN_CLEAR;
 
-    //  Делаем расчет скорости работы модуля UART
-    unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
+	//  Делаем расчет скорости работы модуля UART
+	unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
 
-    OpenUART4(U_MODE, U_STA, U_BRG);
+	OpenUART4(
+		U_MODE, U_STA, U_BRG);
 
-    ConfigIntUART4(UART_RX_INT_EN & UART_RX_INT_PR4
-                   & UART_TX_INT_EN & UART_TX_INT_PR4);
+	ConfigIntUART4(
+		UART_RX_INT_EN & UART_RX_INT_PR4
+		& UART_TX_INT_EN & UART_TX_INT_PR4);
 }
 
-void PIC_Init_USART_4_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(unsigned long fcy,
-                                                                    unsigned long baudrate)
+void
+PIC_Init_USART_4_1StopBit_8BitData_RxIntEnChar_TxIntEnLastChar(unsigned long fcy,
+		unsigned long baudrate)
 {
-    CloseUART4();
+	CloseUART4();
 
-    unsigned int U_MODE = UART_EN
-            & UART_IDLE_CON
-            & UART_IrDA_DISABLE
-            & UART_MODE_SIMPLEX
-            & UART_UEN_00
-            & UART_DIS_WAKE
-            & UART_DIS_LOOPBACK
-            & UART_DIS_ABAUD
-            & UART_UXRX_IDLE_ONE
-            & UART_BRGH_SIXTEEN
-            & UART_NO_PAR_8BIT
-            & UART_1STOPBIT;
+	unsigned int U_MODE = UART_EN
+						  & UART_IDLE_CON
+						  & UART_IrDA_DISABLE
+						  & UART_MODE_SIMPLEX
+						  & UART_UEN_00
+						  & UART_DIS_WAKE
+						  & UART_DIS_LOOPBACK
+						  & UART_DIS_ABAUD
+						  & UART_UXRX_IDLE_ONE
+						  & UART_BRGH_SIXTEEN
+						  & UART_NO_PAR_8BIT
+						  & UART_1STOPBIT;
 
-    unsigned int U_STA = UART_INT_TX_LAST_CH
-            & UART_IrDA_POL_INV_ZERO
-            & UART_SYNC_BREAK_DISABLED
-            & UART_TX_ENABLE
-            & UART_INT_RX_CHAR
-            & UART_ADR_DETECT_DIS
-            & UART_RX_OVERRUN_CLEAR;
+	unsigned int U_STA = UART_INT_TX_LAST_CH
+						 & UART_IrDA_POL_INV_ZERO
+						 & UART_SYNC_BREAK_DISABLED
+						 & UART_TX_ENABLE
+						 & UART_INT_RX_CHAR
+						 & UART_ADR_DETECT_DIS
+						 & UART_RX_OVERRUN_CLEAR;
 
-    //  Делаем расчет скорости работы модуля UART
-    unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
+	//  Делаем расчет скорости работы модуля UART
+	unsigned int U_BRG = ((fcy / baudrate) / 16) - 1;
 
-    OpenUART4(U_MODE, U_STA, U_BRG);
+	OpenUART4(
+		U_MODE, U_STA, U_BRG);
 
-    ConfigIntUART4(UART_RX_INT_EN & UART_RX_INT_PR4
-                   & UART_TX_INT_EN & UART_TX_INT_PR4);
+	ConfigIntUART4(
+		UART_RX_INT_EN & UART_RX_INT_PR4
+		& UART_TX_INT_EN & UART_TX_INT_PR4);
 }
 
-void PIC_USART_4_TransmitPackageWithOutInterrupt(uint8_t *pDataArr,
-                                                 size_t cnt)
+void
+PIC_USART_4_TransmitPackageWithOutInterrupt(
+	uint8_t *pDataArr,
+	size_t cnt)
 {
-    size_t i;
-    for (i = 0; i < cnt; i++)
-    {
-        //  Ждем пока бит не будет сброшен в "0";
-        while (U4STAbits.UTXBF != 0);
+	size_t i;
+	for (i = 0; i < cnt; i++)
+	{
+		//  Ждем пока бит не будет сброшен в "0";
+		while (U4STAbits.UTXBF != 0);
 
-        //  Копируем в буфер UART_transmit байт данных;
-        U4TXREG = *pDataArr++;
-    }
+		//  Копируем в буфер UART_transmit байт данных;
+		U4TXREG = *pDataArr++;
+	}
 }
 #endif //   (__dsPIC33E__) || defined(__PIC24E__)
 //==============================================================================
